@@ -55,7 +55,7 @@ public class Client {
         return maxIncome;
     }
 
-    public BigDecimal getIcomeByNumber (int number){
+    public BigDecimal getIncomeByNumber (int number){
      return deposits[number] == null ? BigDecimal.valueOf(0) : deposits[number].income();
     }
 }
