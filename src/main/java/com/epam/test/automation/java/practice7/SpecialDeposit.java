@@ -8,6 +8,7 @@ import java.math.BigDecimal;
  * </summary>
  */
 public class SpecialDeposit extends Deposit{
+    private final BigDecimal onePercent = new BigDecimal("0.01");
 
     public SpecialDeposit(BigDecimal amount, int period) {
         super(amount, period);
@@ -15,15 +16,14 @@ public class SpecialDeposit extends Deposit{
 
     @Override
     public BigDecimal income() {
-        BigDecimal income = null;
-        BigDecimal persent = new BigDecimal("1");
-        BigDecimal sum;
+        BigDecimal percent = onePercent;
+        BigDecimal sum = amount;
 
-        sum = amount.multiply(persent);
-        for (int i = 0; i < period; i++) {
-            income = sum.multiply(persent);
+        for (int i = 1; i <= period; i++) {
+            sum = sum.add(sum.multiply(percent));
+            percent = percent.add(onePercent);
         }
 
-        return income;
+        return sum.subtract(amount);
     }
 }

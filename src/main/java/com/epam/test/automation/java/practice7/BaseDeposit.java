@@ -16,15 +16,13 @@ public class BaseDeposit extends Deposit{
 
     @Override
     public BigDecimal income() {
-        BigDecimal income = null;
-        BigDecimal persent = new BigDecimal("0,5");
-        BigDecimal sum;
+        BigDecimal percent = new BigDecimal("0.05");
+        BigDecimal sum = amount;
 
-        sum = amount.multiply(persent);
-        for (int i = 0; i < period; i++) {
-            income = sum.multiply(persent);
+        for (int i = 1; i <= period; i++) {
+            sum = sum.add(sum.multiply(percent));
         }
 
-        return income;
+        return sum.subtract(amount);
     }
 }

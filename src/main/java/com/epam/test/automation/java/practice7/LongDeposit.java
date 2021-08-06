@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * Implement class according to description of task.
  * </summary>
  */
-public class LongDeposit extends Deposit{
+public class LongDeposit extends Deposit {
 
     public LongDeposit(BigDecimal amount, int period) {
         super(amount, period);
@@ -15,15 +15,13 @@ public class LongDeposit extends Deposit{
 
     @Override
     public BigDecimal income() {
-        BigDecimal income = null;
-        BigDecimal persent = new BigDecimal("1");
-        BigDecimal sum;
+        BigDecimal percent = new BigDecimal("0.15");
+        BigDecimal sum = amount;
 
-        sum = amount.multiply(persent);
-        for (int i = 0; i < period; i++) {
-            income = sum.multiply(persent);
+        for (int i = 7; i <= period; i++) {
+            sum = sum.add(sum.multiply(percent));
         }
 
-        return income;
+        return sum.subtract(amount);
     }
 }
